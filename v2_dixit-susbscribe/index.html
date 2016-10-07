@@ -11,8 +11,8 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
         <script type="text/javascript" src="//cdn.worldsecuresystems.com/bcapi/bcapi-0.1.0.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <style>
             #span3 {
                 height: 740px !important;
@@ -440,6 +440,8 @@
         
         
         <script>
+            var access_token = BCAPI.Helper.Site.getAccessToken();
+            
             var request = $.ajax({ // API to display Secure Zones of site
                 
                 url: "/webresources/api/v3/sites/current/securezones?fields=name,id,sellAccess&skip=0&limit=500&order=name",
