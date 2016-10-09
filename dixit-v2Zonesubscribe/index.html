@@ -18,6 +18,7 @@
                 height: 740px !important;
                 overflow-y: scroll;
             }
+            
             #democounter,
             #reqsent,
             #message,
@@ -51,19 +52,17 @@
             
             <div class="row">
                 
-                <div class="col-sm-6 col-md-8">
+                <div class="col-sm-6 col-md-6">
                     <p id="hides">
                         <button data-toggle="tooltip" title="Start over by loading CRM records!!" id="listload" class="btn-default" onclick="loadlist()">Click To Load CRM records in span of 200</button>
                     </p>
                     <br/>
                     
-                    <p id="render" class="bg-success" style="width:30%;"> </p>
+                    <p id="render" class="bg-success" style="width:50%;"> </p>
                     
                     <p id="reqsent" class="bg-primary" style="display:none;width:60%;"></p>
-                    <p id="fadeIn" class="bg-primary" style="width:50%;"></p>
                     
-                    
-                    <table style="background-color:#FFFAFA;" data-toggle="tooltip" title="Single or Multiple Zones can be selected" class="table-condensed" border="1px solid black">
+              <table style="background-color:#FFFAFA;" data-toggle="tooltip" title="Single or Multiple Zones can be selected" class="table-condensed" border="1px solid black">
                         <thead>
                             <tr>
                                 <th>List Of Secure Zones</th>
@@ -87,13 +86,19 @@
                         <mark>All CRM Records are now loaded, please choose the secure zone
                             <br/>to proceed with subscription process Or reset the app to start-over.</mark>
                     </p>
-                    <p id="success" class="bg-success" style="width:30%;"></p>
+                    <p id="success" class="bg-success" style="width:50%;"></p>
                     <br/>
-                    <p id="failure" class="bg-warning" style="width:30%;"></p>
+                    <p id="failure" class="bg-warning" style="width:50%;"></p>
                     
                 </div>
                 
-                <div id="span3" class="col-sm-6 col-md-4">
+              <div class="col-sm-2 col-md-2">
+                <p id="fadeIn" class="bg-primary"></p>
+                  <p class="bg-primary" id="reqInProcess"></p>  
+                </div>
+                  
+                    
+                <div id="span3" class="col-sm-4 col-md-4">
                     <p id="democounter"></p>
                     <table data-toggle="tooltip" title="Single or Multiple CRM records can be selected" id="getblank" class="table-condensed" border="1px solid black" style="display:none;background-color:#FFFAFA;">
                         <thead id="span4">
@@ -111,7 +116,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+     </div>
         <script>
             function myrefresh() {
                 location.reload();
@@ -220,6 +225,9 @@
                 });
             });
             
+            document.getElementById("reqInProcess").style.display = "block";
+            $('#reqInProcess').html("Request In Process Please Wait...");
+            
             document.getElementById("render").style.display = "none";
             document.getElementById("message").style.display = "none";
             
@@ -231,12 +239,14 @@
                                    '<a id="feedback" href="https://museibetest.worldsecuresystems.com/rate-your-app" target="_blank">' +
                                    'Please spare a minute to Rate the App' + '</a>');
                 
-                $('#feedback').css({
+                $('#feedback,#reqInProcess').css({
                     "color": "white",
                     "font-style": "italic",
                     "font-family": "sans-serif"
                 });
                 document.getElementById("reqsent").style.display = "block";
+                document.getElementById("reqInProcess").style.display = "none";
+                
                 $("#reqsent").css("color", "white").slideUp(2000).slideDown(2000);
                 
                 sizzler = [];
@@ -266,7 +276,7 @@
                 if ($('.topLevel').is(':checked')) {
                     
                     
-                    $('#fadeIn').html('<strong>' + 'Click the top checkbox to select all customers !' + '</strong>');
+                    $('#fadeIn').html('<strong>' + 'Click The Top Checkbox To Select All Customers !' + '</strong>');
                     
                     $('#fadeIn').css('color', 'white').fadeIn(100).fadeOut(5000);
                     
