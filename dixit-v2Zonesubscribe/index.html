@@ -167,7 +167,7 @@
                 var counter = secureTravel.length;
                 $.each(secureTravel, function(key, value) {
                     punchID = value;
-                    console.log(secureTravel.length);
+                    
                     
                     $.each(sizzler, function(w, customerId) {
                         captureId = customerId;
@@ -196,7 +196,6 @@
                     y.done(function(msg2) {
                         secid++;
                         
-                        
                         $('#success').html('<strong>' + 'Live Count of customers being successfully subscribed:' +
                                            '</strong>' + ' ' + secid);
                         if (sizzler.length == (t + secid) / counter) {
@@ -212,7 +211,7 @@
                         console.log("Response text: " + jqXHR.responseText);
                         console.log(t);
                         $('#failure').html('<strong>' +
-                                           'Live Count of customers who were already subscribed to selected Zone/s & returned bad request:' +
+                                           'Live Count of customers who were already subscribed to this zone & returned bad request:' +
                                            '</strong>' + ' ' + t);
                         if (sizzler.length == (t + secid) / counter) {
                             completed();
@@ -301,7 +300,7 @@
                         if ($.inArray(val1.id, storeid) === -1) {
                             storeid.push(val1.id);
                         }
-                        //  console.log(storeid.length);
+                        
                         
                         $('#tbody1').append('<tr class="clickable-row">' + '<td class="text-center">' + val1.firstName + ' ' +
                                             val1.lastName +
@@ -331,7 +330,7 @@
                             if ($.inArray(ay, sizzler) === -1) {
                                 sizzler.push(ay);
                             }
-                            
+                          
                             document.getElementById("render").style.display = "block";
                             
                             
@@ -355,10 +354,10 @@
                             
                             $('#render').fadeIn(100).fadeOut(100).fadeIn(100);
                         }
-                        
+                       
                     });
                     
-                    console.log(sizzler.length);
+                 
                     
                     b = a;
                     
@@ -415,7 +414,7 @@
                         if ($.inArray(e, sizzler) === -1) {
                             sizzler.push(e);
                         }
-                        console.log(sizzler.length);
+                      
                         
                         $('#render').html('<strong>' + storeid.length + ' ' + '</strong>' + '<strong>' +
                                           'Records will be sent for subscription.' + '</strong>');
@@ -431,7 +430,7 @@
                                       'Records will be sent for subscription.' + '</strong>');
                     
                     $('#render').fadeIn(100).fadeOut(100).fadeIn(100);
-                    console.log(sizzler.length);
+               
                     
                 }
             });
@@ -440,6 +439,8 @@
         
         
         <script>
+            $(document).ready(function() {
+            
             var access_token = BCAPI.Helper.Site.getAccessToken();
             
             var request = $.ajax({ // API to display Secure Zones of site
@@ -486,7 +487,7 @@
                             }
                         }
                     }
-                    
+                   
                 });
             })
             request.fail(function(jqXHR) {
@@ -497,6 +498,8 @@
                 
                 
             })
+            
+            });
         </script>
         
         
