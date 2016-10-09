@@ -115,7 +115,7 @@
         <script>
             function myrefresh() {
                 location.reload();
-            }
+            };
             
             var ziggler = 1;
             var secureCrm = [];
@@ -151,15 +151,15 @@
                     alert("Please Choose The Desired Secure Zone First!!");
                 }
                 
-                if (sizzler.length == 0) {
+                if (sizzler.length === 0) {
                     notify();
                     return;
-                };
+                }
                 
-                if (secureTravel.length == 0) {
+                if (secureTravel.length === 0) {
                     idprompt();
                     return;
-                };
+                }
                 
                 
                 
@@ -330,7 +330,7 @@
                             if ($.inArray(ay, sizzler) === -1) {
                                 sizzler.push(ay);
                             }
-                          
+                            
                             document.getElementById("render").style.display = "block";
                             
                             
@@ -354,10 +354,10 @@
                             
                             $('#render').fadeIn(100).fadeOut(100).fadeIn(100);
                         }
-                       
+                        
                     });
                     
-                 
+                    
                     
                     b = a;
                     
@@ -414,7 +414,7 @@
                         if ($.inArray(e, sizzler) === -1) {
                             sizzler.push(e);
                         }
-                      
+                        
                         
                         $('#render').html('<strong>' + storeid.length + ' ' + '</strong>' + '<strong>' +
                                           'Records will be sent for subscription.' + '</strong>');
@@ -430,7 +430,7 @@
                                       'Records will be sent for subscription.' + '</strong>');
                     
                     $('#render').fadeIn(100).fadeOut(100).fadeIn(100);
-               
+                    
                     
                 }
             });
@@ -440,69 +440,67 @@
         
         <script>
             $(document).ready(function() {
-            
-            var access_token = BCAPI.Helper.Site.getAccessToken();
-            
-            var request = $.ajax({ // API to display Secure Zones of site
                 
-                url: "/webresources/api/v3/sites/current/securezones?fields=name,id,sellAccess&skip=0&limit=500&order=name",
-                type: "GET",
-                connection: "keep-alive",
-                contentType: "application/json",
-                mimeType: "application/json ",
-                headers: {
-                    "Authorization": $.cookie('access_token')
-                }
-            });
-            
-            
-            
-            request.done(function(msg) {
+                var access_token = BCAPI.Helper.Site.getAccessToken();
                 
-                $.each(msg.items, function(i, val) { // Storing value of msg.items in val & rendering on table
+                var request = $.ajax({ // API to display Secure Zones of site
                     
-                    
-                    $('#tbody').append('<tr class="clickable-row">' + '<td>' + val.name + '</td>' + '<td class="tdvalue">' + val.id +
-                                       '</td>' +
-                                       '<td>' + val.sellAccess + '</td>' + '<td id="captured">' + '<input data-id="' + val.id +
-                                       '" data-status="default" class="boxt" id="zaza" type="checkbox" name="foo">' + '</td>' +
-                                       '</tr>')
+                    url: "/webresources/api/v3/sites/current/securezones?fields=name,id,sellAccess&skip=0&limit=500&order=name",
+                    type: "GET",
+                    connection: "keep-alive",
+                    contentType: "application/json",
+                    mimeType: "application/json ",
+                    headers: {
+                        "Authorization": $.cookie('access_token')
+                    }
                 });
                 
-                $('.boxt').change(function() {
+                
+                
+                request.done(function(msg) {
                     
-                    var xy = $(this).closest('tr').find('.tdvalue').text();
-                    var yz = $(this).is(':checked');
+                    $.each(msg.items, function(i, val) { // Storing value of msg.items in val & rendering on table
+                        
+                        
+                        $('#tbody').append('<tr class="clickable-row">' + '<td>' + val.name + '</td>' +
+                                           '<td class="tdvalue">' + val.id +
+                                           '</td>' +
+                                           '<td>' + val.sellAccess + '</td>' + '<td id="captured">' + '<input data-id="' + val.id +
+                                           '" data-status="default" class="boxt" id="zaza" type="checkbox" name="foo">' + '</td>' +
+                                           '</tr>')
+                    });
                     
-                    if (yz == true) {
+                    $('.boxt').change(function() {
                         
-                        secureTravel.push(xy);
-                    } else {
+                        var xy = $(this).closest('tr').find('.tdvalue').text();
+                        var yz = $(this).is(':checked');
                         
-                        for (var c = 0; c < secureTravel.length; c++) {
+                        if (yz == true) {
                             
-                            if (secureTravel[c] == xy) {
+                            secureTravel.push(xy);
+                        } else {
+                            
+                            for (var c = 0; c < secureTravel.length; c++) {
                                 
-                                secureTravel.splice(c, 1);
+                                if (secureTravel[c] == xy) {
+                                    
+                                    secureTravel.splice(c, 1);
+                                }
                             }
                         }
-                    }
-                   
-                });
-            })
-            request.fail(function(jqXHR) {
-                console.log("Request failed.");
-                console.log("Error code: " + jqXHR.status);
-                console.log("Error text: " + jqXHR.statusText);
-                console.log("Response text: " + jqXHR.responseText);
+                        
+                    });
+                })
+                request.fail(function(jqXHR) {
+                    console.log("Request failed.");
+                    console.log("Error code: " + jqXHR.status);
+                    console.log("Error text: " + jqXHR.statusText);
+                    console.log("Response text: " + jqXHR.responseText);
+                    
+                    
+                })
                 
-                
-            })
-            
             });
         </script>
-        
-        
-    </body>
-    
-</html>
+       </body>
+   </html>
